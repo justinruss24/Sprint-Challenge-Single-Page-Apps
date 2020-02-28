@@ -15,6 +15,10 @@ const MainCont = styled.div `
   align-items: center;
   margin: 5% auto;
 `;
+const Links = styled(Link) `
+  text-decoration: none;
+  color: black;
+`
 
 const Title = styled.h3 `
   text-align: center;
@@ -40,7 +44,7 @@ export default function SearchForm(props) {
       .then(response => {
         const data = response.data.results;
         const results = data.filter(character => {
-          return character.name.includes(searchTerm);
+          return character.name.toLowerCase().includes(searchTerm);
         });
         setResults(results);
       });
@@ -58,21 +62,21 @@ export default function SearchForm(props) {
         <input
           type="text"
           placeholder="Search"
-          name="textfield"
+          name="text"
           value={searchTerm}
           onChange={handleChange}
         />
       </FormInput>
       <ul>
-        {results.map(item => {
+        {results.map(character => {
           return (
-            <MainCont key={item.id}>
-              <Link to={`/character/${item.id}`}>
-                <img src={item.image} alt="character profile" />
-                <Title>Name: {item.name}</Title>
-                <CharCont>Species: {item.species}</CharCont>
-                <CharCont>Status:{item.status}</CharCont>
-              </Link>
+            <MainCont key={character.id}>
+              <Links to={`/character/${character.id}`}>
+                <img src={character.image} alt="character profile" />
+                <Title>Name: {character.name}</Title>
+                <CharCont>Species: {character.species}</CharCont>
+                <CharCont>Status: {character.status}</CharCont>
+              </Links>
             </MainCont>
           );
         })}

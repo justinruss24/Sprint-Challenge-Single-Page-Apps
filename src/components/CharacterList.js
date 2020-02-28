@@ -12,6 +12,11 @@ const MainCont = styled.div `
   margin: 5% auto;
 `;
 
+const Links = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
+
 const Title = styled.h3 ` 
   text-align: center;
   color: black;
@@ -43,15 +48,15 @@ export default function CharacterList() {
 
   return (
     <section className="character-list">
-      {characters.map(char => {
+      {characters.map(character => {
         return (
-          <MainCont key={char.id}>
-            <Link to={`/character/${char.id}`}>
-              <img src={char.image} alt="character profile" />
-              <Title> Name: {char.name}</Title>
-              <CharCont> Species: {char.species}</CharCont>
-              <CharCont> Status: {char.status}</CharCont>
-            </Link>
+          <MainCont key={character.id}>
+            <Links to={`/character/${character.id}`}>
+              <img src={character.image} alt="character profile" />
+              <Title> Name: {character.name}</Title>
+              <CharCont> Species: {character.species}</CharCont>
+              <CharCont> Status: {character.status}</CharCont>
+            </Links>
           </MainCont>
         );
       })}
