@@ -7,6 +7,25 @@ const FormInput = styled.form `
   text-align: center;
   padding: 3%;
 `
+const MainCont = styled.div `
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5% auto;
+`;
+
+const Title = styled.h3 `
+  text-align: center;
+  color: black;
+  text-decoration: none;
+`;
+const CharCont = styled.p `
+  text-align: center;
+  color: black;
+  text-decoration: none;
+`;
 
 export default function SearchForm(props) {
  
@@ -20,8 +39,8 @@ export default function SearchForm(props) {
       )
       .then(response => {
         const data = response.data.results;
-        const results = data.filter(item => {
-          return item.name.toLowerCase().includes(searchTerm);
+        const results = data.filter(character => {
+          return character.name.includes(searchTerm);
         });
         setResults(results);
       });
@@ -34,9 +53,30 @@ export default function SearchForm(props) {
 
 
   return (
-    <div className="App">
-
-      <input name="search" value={props.search} onChange={el => handleChange(el)} />
-    </div>
+    <section className="search-form">
+      <FormInput>
+        <input
+          type="text"
+          placeholder="Search"
+          name="textfield"
+          value={searchTerm}
+          onChange={handleChange}
+        />
+      </FormInput>
+      <ul>
+        {results.map(item => {
+          return (
+            <MainCont key={item.id}>
+              <Link to={`/character/${item.id}`}>
+                <img src={item.image} alt="character profile" />
+                <Title>Name: {item.name}</Title>
+                <CharCont>Species: {item.species}</CharCont>
+                <CharCont>Status:{item.status}</CharCont>
+              </Link>
+            </MainCont>
+          );
+        })}
+      </ul>
+    </section>
   );
 }
