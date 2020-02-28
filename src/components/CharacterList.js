@@ -54,8 +54,11 @@ export default function CharacterList() {
             <Links to={`/character/${character.id}`}>
               <img src={character.image} alt="character profile" />
               <Title> Name: {character.name}</Title>
-              <CharCont> Species: {character.species}</CharCont>
-              <CharCont> Status: {character.status}</CharCont>
+              <CharCont>
+                Species: {character.species}
+                <br />
+                Status: {character.status}
+              </CharCont>
             </Links>
           </MainCont>
         );

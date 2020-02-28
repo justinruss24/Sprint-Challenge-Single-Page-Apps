@@ -8,7 +8,7 @@ const Welcome = styled.div `
   justify-content: flex-start;
   align-items: center;
   margin: 5% auto;
-  height: 900px;
+
 `
 
 export default function WelcomePage() {
