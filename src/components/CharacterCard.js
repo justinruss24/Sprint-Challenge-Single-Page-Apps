@@ -1,13 +1,13 @@
 import React from "react";
-import styled from 'styled-components';
+import { Card, CardImg, CardTitle } from 'reactstrap';
 
-export default function CharacterCard() {
+export default function CharacterCard(props) {
   return (
     <div className="container">
-      <div>
-        <img />
-        <h2>Character Name</h2>
-      </div>
+      <Card>
+        <CardImg src={props.character.image} />
+        <CardTitle>{props.character.name}</CardTitle>
+      </Card>
     </div>
   )
 }
